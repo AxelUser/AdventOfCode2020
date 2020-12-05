@@ -79,13 +79,13 @@ namespace Day4
                                 }
                             }
                             break;
-                        case "hcl" when Regex.IsMatch(value, @"#[0-9a-f]{6}") && value.Length == 7:
+                        case "hcl" when Regex.IsMatch(value, @"^#[0-9a-f]{6}$"):
                             flags[^1] |= HCL;
                             break;
                         case "ecl" when Regex.IsMatch(value, @"(amb|blu|brn|gry|grn|hzl|oth)"):
                             flags[^1] |= ECL;
                             break;
-                        case "pid" when Regex.IsMatch(value, @"\d{9}") && value.Length == 9:
+                        case "pid" when Regex.IsMatch(value, @"^\d{9}$"):
                             flags[^1] |= PID;
                             break;
                         case "cid":
