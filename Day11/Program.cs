@@ -16,23 +16,18 @@ namespace Day11
             var fileName = args[0];
             var part = int.Parse(args[1]);
 
-            switch (part)
+            var count = part switch
             {
-                case 1:
-                    var part1 = CountOccupiedSeats(ReadGrid(File.ReadLines(fileName)),
-                        (g, pos) => CheckSeatsPart1(g, pos.y, pos.x, 0),
-                        (g, pos) => !CheckSeatsPart1(g, pos.y, pos.x, 3));
-                    Console.WriteLine(
-                        $"Occupied seats: {part1}");
-                    return;
-                case 2:
-                    var part2 = CountOccupiedSeats(ReadGrid(File.ReadLines(fileName)),
-                        (g, pos) => CheckSeatsPart2(g, pos.y, pos.x, 0),
-                        (g, pos) => !CheckSeatsPart2(g, pos.y, pos.x, 4));
-                    Console.WriteLine(
-                        $"Occupied seats: {part2}");
-                    return;
-            }
+                1 => CountOccupiedSeats(ReadGrid(File.ReadLines(fileName)),
+                    (g, pos) => CheckSeatsPart1(g, pos.y, pos.x, 0),
+                    (g, pos) => !CheckSeatsPart1(g, pos.y, pos.x, 3)),
+                2 => CountOccupiedSeats(ReadGrid(File.ReadLines(fileName)),
+                    (g, pos) => CheckSeatsPart2(g, pos.y, pos.x, 0),
+                    (g, pos) => !CheckSeatsPart2(g, pos.y, pos.x, 4))
+            };
+            
+            Console.WriteLine(
+                $"Occupied seats: {count}");
         }
 
         private static int CountOccupiedSeats(char[][] grid,
