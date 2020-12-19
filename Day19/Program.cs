@@ -47,30 +47,27 @@ namespace Day19
 
                 return s =>
                 {
-                    var matches42 = regex42.Matches(s);
-                    if (!matches42.Any())
+                    var fullMatch42 = fullRegex42.Match(s);
+                    if (!fullMatch42.Success)
                         return false;
+                    
+                    var matches42 = regex42.Matches(s[..fullMatch42.Length]);
                     
                     var count42 = matches42.Count;
-                    var fullMatch42 = fullRegex42.Match(s);
                     var end42 = fullMatch42.Length;
 
-                    var matches31 = regex31.Matches(s[end42..]);
-                    if (!matches31.Any())
+                    var fullMatch31 = fullRegex31.Match(s[end42..]);
+                    
+                    if (!fullMatch31.Success)
                         return false;
                     
+                    var matches31 = regex31.Matches(s[end42..]);
                     var count31 = matches31.Count;
-                    var fullMatch31 = fullRegex31.Match(s[end42..]);
+                    
                     var end31 = fullMatch31.Length;
                     
                     if (end42 + end31 != s.Length) return false;
-                    var res = count31 >= 1 && count42 > count31;
-
-                    if (res)
-                    {
-                        Console.WriteLine(s);
-                    }
-                    return res;
+                    return count31 >= 1 && count42 > count31;
                 };
             };
         }
