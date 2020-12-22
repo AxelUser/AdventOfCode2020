@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Day3
+namespace Day03
 {
     public enum SquareType
     {
